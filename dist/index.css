@@ -1,0 +1,50 @@
+html, body, .container {
+
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: rgb(48, 126, 67);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+h1{
+    font-size: 42px;
+}
+
+p{
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+input{
+    width: 15rem;
+    height: 2rem;
+    outline: none;
+    border: 1px solid black;
+    font-size: 25px;
+    border-radius: 0.2rem;
+}
+
+button{
+    width: 5rem;
+    height: 2rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+}
+
+button:hover{
+    background-color: rgb(199, 199, 199);
+}
