@@ -7,10 +7,21 @@ send.addEventListener('click', () => {
     let messageValue = message.value;
     let stickerPackageIdValue = stickerPackageId.value;
     let stickerIdValue = stickerId.value;
-    fetch('http://127.0.0.1:3000', {
+    let obj = {};
+    if (messageValue) {
+        alert('ok');
+    }
+    else {
+        alert('You have to type something!');
+    }
+    console.log(obj);
+    fetch('http://localhost:5000/send', {
         method: 'POST',
-        headers: {}
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `message=${messageValue}&stickerId=${stickerIdValue}&stickerPackageId=${stickerPackageIdValue}`
     });
-    // console.log(messageValue, stickerPackageIdValue, stickerIdValue);
+    console.log(messageValue, stickerPackageIdValue, stickerIdValue);
 });
 //# sourceMappingURL=index.js.map

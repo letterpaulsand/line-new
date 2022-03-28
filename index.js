@@ -1,8 +1,11 @@
 const express = require('express')
 const FormData = require('form-data');
+require('dotenv').config()
 const axios = require('axios');
 const path = require('path')
 const app = express()
+const port = process.env.PORT || 3000
+const token = process.env.LINE_NOTIFY_TOKEN
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -22,40 +25,43 @@ app.get('/index.js', (req, res) => {
 app.post('/send', (req, res) => {
     let formBody = new FormData()
 
-    formBody.append('message', req.body.message);
-    formBody.append('stickerPackageId', req.body.stickerPackageId);
-    formBody.append('stickerId', req.body.stickerId);
+    let message = req.body.message;
+    let stickerPackageId = req.body.stickerPackageId;
+    let stickerId = req.body.stickerId;
+
+    if (message) {
+        if (stickerPackageId && stickerId) {
+            formBody.append('stickerPackageId', stickerPackageId);
+            formBody.append('stickerId', stickerId);
+        }
+        formBody.append('message', message);
+    } else {
+        res.status(400).sendFile(path.resolve('./json/400.json'))
+    }
+
 
     let headers = Object.assign({
-        'Authorization': 'Bearer eAYxFZtU7fT0DfRVuGiNMXhoozXB4nucOenl4p2s1S4',
-        'Content-Type': 'multipart/form-data'
-    },formBody.getHeaders())
+        'Authorization': `Bearer ${token}`,
+    }, formBody.getHeaders())
+
 
     axios({
         method: 'post',
         url: 'https://notify-api.line.me/api/notify',
         headers: headers,
         data: formBody
-    }).then(res=>{
-        console.log(res);
-    })
+    }).then(respond => {
+        
+        res.status(200).json(respond.data);
 
+    }).catch(()=>{
 
-    // fetch('https://notify-api.line.me/api/notify', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Authorization': 'Bearer eAYxFZtU7fT0DfRVuGiNMXhoozXB4nucOenl4p2s1S4',
-    //         'Content-Type': 'multipart/form-data;'
-    //     },
-    //     body: formBody
-    // }).then(res=>{
-    //     return res.json()
-    // }).then(data=>{
-    //     console.log(data);
-    // })
+        res.status(500).json();
+
+    });
 
 })
 
-app.listen(3000, () => {
-    console.log('ok');
+app.listen(port, () => {
+    console.log(`Server is running at ${port}`);
 })
