@@ -22,6 +22,10 @@ app.get('/index.js', (req, res) => {
     res.sendFile(path.resolve('./dist/index.js'))
 })
 
+app.get('/index.js.map', (req, res) => {
+    res.sendFile(path.resolve('./dist/index.js.map'))
+})
+
 app.post('/send', (req, res) => {
     let formBody = new FormData()
 
