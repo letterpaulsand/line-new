@@ -38,8 +38,8 @@ input{
 }
 
 button{
-    width: 5rem;
-    height: 2rem;
+    width: 60px;
+    height: 30px;
     background-color: white;
     border: 1px solid black;
     border-radius: 0.2rem;
@@ -47,4 +47,10 @@ button{
 
 button:hover{
     background-color: rgb(199, 199, 199);
+}
+
+.result-box{
+    background-color: rgb(177, 177, 177);
+    height: 5rem;
+    width: 20rem;
 }
