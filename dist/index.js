@@ -43,9 +43,7 @@ send.addEventListener('click', () => {
         stickerPackageId: stickerPackageIdValue,
         stickerId: stickerIdValue
     };
-    let sendBody = `message=${SendToBackend.message}&
-        stickerId=${SendToBackend.stickerId}&
-        stickerPackageId=${SendToBackend.stickerPackageId}`;
+    let sendBody = `message=${SendToBackend.message}&stickerId=${SendToBackend.stickerId}&stickerPackageId=${SendToBackend.stickerPackageId}`;
     if (messageValue) {
         alert('ok');
     }
