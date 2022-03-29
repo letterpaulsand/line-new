@@ -7,7 +7,7 @@
 // There is the config data below
 //--------- CONFIG ---------
 // https://line-new.vercel.app
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://line-new.vercel.app';
 // DON'T ADD " / " AFTER THE URL
 //--------- CONFIG ---------
 let message = document.getElementById('message');
